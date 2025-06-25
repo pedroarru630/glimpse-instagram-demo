@@ -5,9 +5,18 @@ import { Progress } from "@/components/ui/progress";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
+import { useState } from "react";
 
 const PerfilOutrasPessoas = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (username.trim()) {
+      navigate('/loading');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-200 flex flex-col">
@@ -46,20 +55,28 @@ const PerfilOutrasPessoas = () => {
             Digite o instagram dele(a) abaixo:
           </p>
 
-          {/* Input field */}
-          <div className="mb-2">
-            <Input
-              placeholder="@afelopes"
-              className="w-full text-center border-gray-300 rounded-lg py-3"
-            />
-          </div>
+          {/* Form */}
+          <form onSubmit={handleSubmit}>
+            {/* Input field */}
+            <div className="mb-2">
+              <Input
+                placeholder="@afelopes"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                className="w-full text-center border-gray-300 rounded-lg py-3"
+              />
+            </div>
 
-          {/* Security text */}
-          <div className="flex items-center justify-center mb-6">
-            <span className="text-xs text-gray-500 flex items-center">
-              🔒 Dados seguros, não é necessário sua senha
-            </span>
-          </div>
+            {/* Security text */}
+            <div className="flex items-center justify-center mb-6">
+              <span className="text-xs text-gray-500 flex items-center">
+                🔒 Dados seguros, não é necessário sua senha
+              </span>
+            </div>
+
+            {/* Submit button (hidden, triggered by Enter key) */}
+            <button type="submit" className="hidden" />
+          </form>
 
           {/* Warning block */}
           <div className="bg-orange-500 text-white rounded-lg p-4 mb-8 flex items-center">

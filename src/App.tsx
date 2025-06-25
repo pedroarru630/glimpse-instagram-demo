@@ -10,6 +10,7 @@ import PerfilOutrasPessoas from "./pages/PerfilOutrasPessoas";
 import Loading from "./pages/Loading";
 import ProfileConfirmation from "./pages/ProfileConfirmation";
 import Results from "./pages/Results";
+import FinalResults from "./pages/FinalResults";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/loading" element={<Loading />} />
           <Route path="/profile-confirmation" element={<ProfileConfirmation />} />
           <Route path="/results" element={<Results />} />
+          <Route path="/final-results" element={<FinalResults />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

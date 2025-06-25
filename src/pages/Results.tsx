@@ -2,8 +2,12 @@
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 const Results = () => {
+  const navigate = useNavigate();
+
   const findings = [
     "3 conversas com chamada de vídeo foram excluídas no direct de fernanda",
     "A inteligência artificial conseguiu resgatar prints de conversas com cunho sexual",
@@ -11,6 +15,10 @@ const Results = () => {
     "fernanda tem um fã! Um super stalker está visitando seu perfil por 11 dias consecutivos",
     "3 perfis que não seguem fernanda adicionaram nos melhores amigos"
   ];
+
+  const handleViewFullReport = () => {
+    navigate('/final-results');
+  };
 
   return (
     <div className="min-h-screen bg-gray-200 flex flex-col">
@@ -25,7 +33,7 @@ const Results = () => {
           {/* Profile picture */}
           <div className="flex justify-center mb-6">
             <Avatar className="w-24 h-24">
-              <AvatarImage src="/placeholder.svg" alt="Fernanda" />
+              <AvatarImage src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?w=200&h=200&fit=crop&crop=face" alt="Fernanda" />
               <AvatarFallback className="text-2xl">F</AvatarFallback>
             </Avatar>
           </div>
@@ -41,7 +49,7 @@ const Results = () => {
           </p>
 
           {/* Findings */}
-          <div className="space-y-4">
+          <div className="space-y-4 mb-8">
             {findings.map((finding, index) => (
               <div key={index} className="flex items-start space-x-3">
                 <Check className="w-5 h-5 text-orange-500 mt-0.5 flex-shrink-0" />
@@ -51,6 +59,14 @@ const Results = () => {
               </div>
             ))}
           </div>
+
+          {/* CTA Button */}
+          <Button 
+            onClick={handleViewFullReport}
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+          >
+            Ver relatório completo
+          </Button>
         </div>
       </div>
 
